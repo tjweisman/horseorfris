@@ -11,6 +11,7 @@ def parse_args(args):
     parser.add_argument("all_names", help="database of name/url pairs to use")
     parser.add_argument("infile", help="list of names to format to a JSON array")
     parser.add_argument("--outfile", "-o", help="output filename")
+    parser.add_argument("--type", help="type of data", default="horse")
 
     return parser.parse_args(args)
 
@@ -19,8 +20,9 @@ def main(args):
         data = pickle.load(datafile)
 
     with open(args.infile, 'r') as namelist:
-        oput_strs = ['{"name":"%s", "url":"%s"}'%(name.rstrip().decode('utf-8'),
-                                                  data[name.rstrip()])
+        oput_strs = ['{"name":"%s", "url":"%s", "type":"%s"}'%(name.rstrip().decode('utf-8'),
+                                                               data[name.rstrip()],
+                                                               args.type)
                      for name in namelist]
 
         output = '[%s\n]'%(',\n'.join(oput_strs))

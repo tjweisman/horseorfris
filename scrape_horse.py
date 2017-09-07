@@ -2,7 +2,7 @@ import urllib2
 from bs4 import BeautifulSoup
 import pickle
 
-years = range(1980, 2018)
+years = range(1875, 1980)
 
 horse_list = []
 
@@ -35,6 +35,8 @@ for year in years:
     horses = [horse_pair(row.find_all("td")[horse_index],
                          year)
               for row in horse_rows]
+
+    print horses
 
     horse_list += horses
 
