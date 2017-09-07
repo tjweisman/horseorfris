@@ -35,7 +35,7 @@ $(document).ready(function () {
 			correct += 1;
 		}
 
-		$("#percentage").text("Rate: " + Math.floor(correct * 100.0 / total) + "% ("+correct +
+		$("#percentage").text("Correct: " + Math.floor(correct * 100.0 / total) + "% ("+correct +
 			"/" + total + ")");
 
 		data = fill_box();
