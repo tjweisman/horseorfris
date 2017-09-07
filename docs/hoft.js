@@ -201,7 +201,7 @@ function answer_text(data) {
 	if(data["type"] == "frisbee") {
 		typename = "frisbee team";
 	}
-	
+
 	return data["info"]["name"] + ' is a <a href="' + data["info"]["url"] +
 		'" class = "infolink">'+ typename + '</a>.';
 }
@@ -239,9 +239,9 @@ function fill_box() {
 	var type = "horse";
 	var info;
 	if(horse) {
-		info = horses[randRange(horsenames.length)];
+		info = horses[randRange(horses.length)];
 	} else {
-		info = frisbee[randRange(frisbeenames.length)];
+		info = frisbee[randRange(frisbee.length)];
 		type = "frisbee";
 	}
 
