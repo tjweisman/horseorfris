@@ -11,9 +11,8 @@ html {
 }
 
 #about-box {
-	float: left;
-	width: 250px;
-	margin: 10px;
+	width: 90%;
+	margin: auto;
 }
 
 #about-toggle {
@@ -25,7 +24,7 @@ html {
 }
 
 .hidden {
-	visibility: hidden;
+	display: none;
 }
 
 #namebox {
