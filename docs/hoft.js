@@ -196,12 +196,14 @@ var horsenames = ["Chefs",
 "Master Plan",
 "Thunder Snow"]
 
-function ansname(type) {
-	if(type == "horse") {
-		return "horse";
-	} else {
-		return "frisbee team";
+function answer_text(data) {
+	var typename = "horse";
+	if(data["type"] == "frisbee") {
+		typename = "frisbee team";
 	}
+	
+	return data["info"]["name"] + ' is a <a href="' + data["info"]["url"] +
+		'" class = "infolink">'+ typename + '</a>.';
 }
 
 $(document).ready(function () {
@@ -210,12 +212,13 @@ $(document).ready(function () {
 	$(".button").click(function(evt) {
 		evt.preventDefault();
 		var guess = $(this).attr("id");
-		var anstr = data["name"] + " is a " + ansname(data["type"]) + ".";
+
+		var anstr = answer_text(data);
 		if(guess == data["type"]) {
-			$("#result").text("Correct! " + anstr);
+			$("#result").html("Correct! " + anstr);
 			$("#result").removeClass("incorrect").addClass("correct");
 		} else {
-			$("#result").text("Incorrect. " + anstr);
+			$("#result").html("Incorrect. " + anstr);
 			$("#result").removeClass("correct").addClass("incorrect");
 		}
 		data = fill_box();
@@ -234,15 +237,15 @@ function randRange(max) {
 function fill_box() {
 	var horse = (Math.random() > 0.5);
 	var type = "horse";
-	var name = "";
+	var info;
 	if(horse) {
-		name = horsenames[randRange(horsenames.length)];
+		info = horses[randRange(horsenames.length)];
 	} else {
-		name = frisbeenames[randRange(frisbeenames.length)];
+		info = frisbee[randRange(frisbeenames.length)];
 		type = "frisbee";
 	}
 
-	$("#namebox").text(name);
+	$("#namebox").text(info["name"]);
 	return {"type":type,
-			"name":name};
+			"info":info};
 }
