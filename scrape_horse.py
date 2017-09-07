@@ -9,8 +9,8 @@ horse_list = []
 def horse_pair(td, year):
     name = str(td.string)
     a = td.find("a")
-    if a is not None:
-        url = str("https://en.wikipedia.org/" + a.get("href"))
+    if a is not None and "redlink" not in a.get("href"):
+        url = str("https://en.wikipedia.org" + a.get("href"))
     else:
         url = "https://en.wikipedia.org/wiki/{}_Kentucky_Derby".format(year)
 
@@ -37,7 +37,14 @@ for year in years:
               for row in horse_rows]
 
     horse_list += horses
+
+horse_dict = {}
+for name, url in horse_list:
+    horse_dict[name] = url
     
 with open("horselist", 'w') as fi:
     pickle.dump(horse_list, fi)
+
+with open("horsedict", 'w') as fi:
+    pickle.dump(horse_dict, fi)
     
